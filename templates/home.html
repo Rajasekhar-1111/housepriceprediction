@@ -1,3 +1,114 @@
-<h1\> 
-    Hello World
-</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>House Price Prediction</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            background: #ffffff;
+            padding: 30px;
+            width: 420px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        form {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 12px;
+        }
+
+        input {
+            padding: 10px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            font-size: 14px;
+        }
+
+        button {
+            padding: 12px;
+            background: #667eea;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #5a67d8;
+        }
+
+        .result {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 18px;
+            color: green;
+            font-weight: 600;
+        }
+
+        .note {
+            font-size: 12px;
+            color: #666;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>🏠 House Price Prediction</h1>
+
+    <form action="/predict" method="post">
+
+        <input type="number" name="area" placeholder="Area (sqft)" required>
+        <input type="number" name="bedrooms" placeholder="Bedrooms" required>
+        <input type="number" name="bathrooms" placeholder="Bathrooms" required>
+        <input type="number" name="stories" placeholder="Stories" required>
+        <input type="number" name="parking" placeholder="Parking" required>
+
+        <input type="number" name="mainroad_yes" placeholder="Main Road (1=yes,0=no)" required>
+        <input type="number" name="guestroom_yes" placeholder="Guest Room (1=yes,0=no)" required>
+        <input type="number" name="basement_yes" placeholder="Basement (1=yes,0=no)" required>
+        <input type="number" name="hotwaterheating_yes" placeholder="Hot Water Heating (1=yes,0=no)" required>
+        <input type="number" name="airconditioning_yes" placeholder="Air Conditioning (1=yes,0=no)" required>
+        <input type="number" name="prefarea_yes" placeholder="Preferred Area (1=yes,0=no)" required>
+
+        <input type="number" name="furnishingstatus_semi-furnished" placeholder="Semi Furnished (1=yes,0=no)" required>
+        <input type="number" name="furnishingstatus_unfurnished" placeholder="Unfurnished (1=yes,0=no)" required>
+
+        <button type="submit">Predict Price</button>
+    </form>
+
+    {% if prediction_text %}
+        <div class="result">
+            {{ prediction_text }}
+        </div>
+    {% endif %}
+
+    <div class="note">
+        Enter 1 for Yes and 0 for No
+    </div>
+</div>
+
+</body>
+</html>
